@@ -7,9 +7,9 @@ resource "aws_lambda_function" "send_email" {
   function_name    = var.lambda_function_name
   role             = aws_iam_role.lambda_role.arn
   runtime          = "python3.8"
-  handler          = "hello_world.lambda_handler" # Updated handler
-  filename         = "hello_world.zip"            # Updated file name
-  source_code_hash = filebase64sha256("hello_world.zip")
+  handler          = "email_seven_days_cost.lambda_handler" # Updated handler
+  filename         = "email_seven_days_cost.zip"            # Updated file name
+  source_code_hash = filebase64sha256("email_seven_days_cost.zip")
   timeout          = 30
 
   environment {
