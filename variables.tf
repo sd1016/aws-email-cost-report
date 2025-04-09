@@ -47,4 +47,9 @@ variable "event_rule_name" {
   default     = "sd1016_daily_lambda_trigger"
 }
 
+variable "cost_usage_policy_name" {
+  description = "The name of the Cost and Usage policy"
+  type        = string
+  default     = "sd1016_cost_usage_policy"
+}
 

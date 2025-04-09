@@ -73,6 +73,23 @@ resource "aws_iam_policy" "log_group_policy" {
   })
 }
 
+resource "aws_iam_policy" "cost_usage_policy" {
+  name        = var.cost_usage_policy_name
+  description = "Allow Lambda to retrieve cost and usage data"
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect   = "Allow",
+        Action   = "ce:GetCostAndUsage",
+        Resource = "*"
+      }
+    ]
+  })
+}
+
+
 resource "aws_iam_role_policy_attachment" "attach_log_group_policy" {
   role       = aws_iam_role.lambda_role.name
   policy_arn = aws_iam_policy.log_group_policy.arn
@@ -81,6 +98,11 @@ resource "aws_iam_role_policy_attachment" "attach_log_group_policy" {
 resource "aws_iam_role_policy_attachment" "attach_ses_policy" {
   role       = aws_iam_role.lambda_role.name
   policy_arn = aws_iam_policy.ses_policy.arn
+}
+
+resource "aws_iam_role_policy_attachment" "attach_cost_usage_policy" {
+  role       = aws_iam_role.lambda_role.name
+  policy_arn = aws_iam_policy.cost_usage_policy.arn
 }
 
 
