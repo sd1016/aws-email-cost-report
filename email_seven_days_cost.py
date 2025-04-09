@@ -43,13 +43,13 @@ def lambda_handler(event, context):
             Source=SENDER_EMAIL,
             Destination={'ToAddresses': [RECIPIENT_EMAIL]},
             Message={
-                'Subject': {'Data': 'Lambda - 7 Days AWS Cost Report'},
+                'Subject': {'Data': 'AWS Lambda - 7 Days AWS Cost Report'},
                 'Body': {'Text': {'Data': cost_report}}
             }
         )
     
         return {"status": "Success", "message": "Email sent successfully"}
-        
+
     except Exception as e:
         print(f"Error retrieving cost data: {e}")
         return {"status": "Error", "message": str(e)}
